@@ -131,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Spacer(),
+                      // Spacer(),
                       Center(
                         child: RaisedButton(
                           onPressed: () => logout(context),

@@ -296,7 +296,7 @@ class EmptyCart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/delivery/sad.png',
+            'assets/images/sad.png',
             height: 90,
           ),
           const SizedBox(height: 20),
