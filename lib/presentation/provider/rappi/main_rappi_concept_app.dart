@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ipet/domain/model/rappi_data.dart';
 import 'package:ipet/presentation/common/label.dart';
@@ -179,54 +181,64 @@ class _RappiProductItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           color: Colors.white,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ClipOval(
-                    child: Image.asset(
-                  product.image,
-                  height: 100,
-                  width: 80,
-                )),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      product.name,
-                      style: TextStyle(
-                        color: _blueColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+          child: LayoutBuilder(builder: (context, constraints) {
+            final radius =
+                min(constraints.maxHeight / 0.9, constraints.maxWidth * 0.1);
+            return Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: CircleAvatar(
+                    radius: radius,
+                    child: ClipOval(
+                        child: Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      child: Image.asset(
+                        product.image,
+                        fit: BoxFit.fill,
                       ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      product.description,
-                      maxLines: 2,
-                      style: TextStyle(
-                        color: _blueColor,
-                        fontSize: 10,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      '\$${product.price.toStringAsFixed(2)}',
-                      style: TextStyle(
-                        color: _greenColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                    )),
+                  ),
                 ),
-              ),
-            ],
-          ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        product.name,
+                        style: TextStyle(
+                          color: _blueColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        product.description,
+                        maxLines: 2,
+                        style: TextStyle(
+                          color: _blueColor,
+                          fontSize: 10,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        '\$${product.price.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          color: _greenColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ipet/domain/model/product.dart';
+import 'package:ipet/domain/model/rappi_data.dart';
 import 'package:ipet/domain/repository/api_repository.dart';
 import 'package:ipet/presentation/common/delivery_button.dart';
 import 'package:ipet/presentation/common/theme.dart';
@@ -63,8 +64,10 @@ class _ItemProduct extends StatelessWidget {
     Key key,
     this.product,
     this.onTap,
+    this.rappi,
   }) : super(key: key);
   final Product product;
+  final RappiProduct rappi;
   final VoidCallback onTap;
 
   @override
@@ -78,16 +81,15 @@ class _ItemProduct extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: CircleAvatar(
-                backgroundColor: Colors.black,
-                child: ClipOval(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset(
-                      product.image,
-                      fit: BoxFit.cover,
-                    ),
+            CircleAvatar(
+              backgroundColor: Colors.black,
+              child: ClipOval(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    // product.image,
+                    rappi.image,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
