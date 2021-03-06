@@ -45,6 +45,7 @@ class LoginScreen extends StatelessWidget {
       _scaffoldKey.currentState.showSnackBar(
         SnackBar(
           content: Label(
+            textColor: Colors.white,
             text: 'Login incorrect',
           ),
         ),
