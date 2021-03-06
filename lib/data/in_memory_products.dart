@@ -5,31 +5,31 @@ final products = [
       name: 'WHOPPER Crispy',
       description:
           'Delicious 100% grilled beef burger alternative with cheese flakes, crunchy onions, bbq sauce, fresh lettuce, tomatoes and a creamy mayonnaise',
-      image: 'assets/delivery/products/crispy.png',
+      image: 'assets/images/dog-img.jpg',
       price: 20),
   Product(
       name: 'XT Cheese Bacon',
       description:
           '100% beef, 75% larger, served with fresh greens, creamy mayo, cheese, and bacon wrapped in delicious Corn Dusted bread.',
-      image: 'assets/delivery/products/xtcheesebacon.png',
+      image: 'assets/images/dog2.jpg',
       price: 58),
   Product(
       name: 'XT Steakhouse',
       description:
           'For the hungry. An extreme combination of 100% grilled beef, cheese flakes, BBQ sauce and Hash Brown Potatoes.',
-      image: 'assets/delivery/products/xtsteackhouse.png',
+      image: 'assets/images/dog3.jpg',
       price: 78),
   Product(
       name: 'Megastacker',
       description:
           'If you are a fan of our iconic STACKER® Double Reg burger. With this option, you can enjoy twice the flavor of the same burger, but in MEGA size!',
-      image: 'assets/delivery/products/megastacker.png',
+      image: 'assets/images/dog4.jpg',
       price: 63),
   Product(
       name: 'Mega Xtreme BBQ',
       description:
           'For the hungry. An extreme combination of 100% grilled beef, cheese flakes, BBQ sauce and Hash Brown Potatoes.',
-      image: 'assets/delivery/products/megaextremebbq.png',
+      image: 'assets/images/dog5.jpg',
       price: 76),
   Product(
       name: 'Mega Bacon',

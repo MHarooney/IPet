@@ -183,7 +183,7 @@ class _RappiProductItem extends StatelessWidget {
           color: Colors.white,
           child: LayoutBuilder(builder: (context, constraints) {
             final radius =
-                min(constraints.maxHeight / 0.9, constraints.maxWidth * 0.1);
+                min(constraints.maxHeight * 0.9, constraints.maxWidth * 0.1);
             return Row(
               children: [
                 Padding(

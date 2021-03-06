@@ -6,11 +6,14 @@ class DeliveryButton extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
   final EdgeInsets padding;
+  final double width, height;
 
   const DeliveryButton({
     Key key,
     this.onTap,
     this.text,
+    this.width,
+    this.height,
     this.padding = const EdgeInsets.all(14.0),
   }) : super(key: key);
 
@@ -19,6 +22,8 @@ class DeliveryButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(

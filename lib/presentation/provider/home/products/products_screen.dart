@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ipet/domain/model/product.dart';
 import 'package:ipet/domain/model/rappi_data.dart';
@@ -78,52 +80,58 @@ class _ItemProduct extends StatelessWidget {
       color: Theme.of(context).canvasColor,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            CircleAvatar(
-              backgroundColor: Colors.black,
-              child: ClipOval(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    // product.image,
-                    rappi.image,
-                    fit: BoxFit.cover,
+        child: LayoutBuilder(builder: (context, constraints) {
+          final radius =
+              min(constraints.maxHeight * 0.3, constraints.maxWidth * 0.4);
+          return Column(
+            children: [
+              CircleAvatar(
+                radius: radius,
+                backgroundColor: Colors.black,
+                child: ClipOval(
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: Image.asset(
+                      product.image,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(product.name),
-                  const SizedBox(height: 10),
-                  Text(
-                    product.description,
-                    style: Theme.of(context).textTheme.overline.copyWith(
-                          color: DeliveryColors.lightGrey,
-                        ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    '\$${product.price} USD',
-                    style: TextStyle(
-                      color: Theme.of(context).accentColor,
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(product.name),
+                    const SizedBox(height: 10),
+                    Text(
+                      product.description,
+                      style: Theme.of(context).textTheme.overline.copyWith(
+                            color: DeliveryColors.lightGrey,
+                          ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    Text(
+                      '\$${product.price} USD',
+                      style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            DeliveryButton(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              text: 'Add',
-              onTap: onTap,
-            ),
-          ],
-        ),
+              DeliveryButton(
+                width: constraints.maxWidth * 0.9,
+                height: constraints.maxHeight * 0.1,
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                text: 'Add',
+                onTap: onTap,
+              ),
+            ],
+          );
+        }),
       ),
     );
   }
