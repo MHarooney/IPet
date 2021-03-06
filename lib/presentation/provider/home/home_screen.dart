@@ -34,26 +34,33 @@ class HomeScreen extends StatelessWidget {
     final bloc = Provider.of<HomeBLoC>(context);
     return Scaffold(
       extendBody: true,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: IndexedStack(
-              index: bloc.indexSelected,
-              children: [
-                ProductsScreen.init(context),
-                MainRappiConceptApp(),
-                const CartScreen(),
-                const Placeholder(),
-                ProfileScreen.init(context),
-              ],
+      body: LayoutBuilder(builder: (context, constraints) {
+        return Stack(
+          children: [
+            Expanded(
+              child: IndexedStack(
+                index: bloc.indexSelected,
+                children: [
+                  ProductsScreen.init(context),
+                  MainRappiConceptApp(),
+                  const CartScreen(),
+                  const Placeholder(),
+                  ProfileScreen.init(context),
+                ],
+              ),
             ),
-          ),
-          _DeliveryNavigationBar(
-            index: bloc.indexSelected,
-          ),
-        ],
-      ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: constraints.maxHeight * 0.11,
+                child: _DeliveryNavigationBar(
+                  index: bloc.indexSelected,
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
@@ -98,119 +105,6 @@ class _DeliveryNavigationBar extends StatelessWidget {
             ),
           );
         });
-    // return Padding(
-    //   padding: Platform.isAndroid
-    //       ? EdgeInsets.fromLTRB(16, 11, 16, 11)
-    //       : EdgeInsets.fromLTRB(16, 47, 16, 0),
-    //   child: ClipRRect(
-    //     borderRadius: BorderRadius.circular(15),
-    //     child: Container(
-    //       color: Colors.black45,
-    //       height: 52,
-    //       child: DefaultTabController(
-    //         length: 5,
-    //         child: TabBar(
-    //           indicatorColor: DeliveryColors.blackBlue,
-    //           labelColor: DeliveryColors.blackBlue,
-    //           unselectedLabelColor: DeliveryColors.blackBlue,
-    //           tabs: [
-    //             Expanded(
-    //               child: Tab(
-    //                 icon: IconButton(
-    //                   icon: Icon(
-    //                     Icons.home,
-    //                     color: index == 0
-    //                         ? DeliveryColors.green
-    //                         : DeliveryColors.lightGrey,
-    //                   ),
-    //                   onPressed: () => bloc.updateIndexSelected(0),
-    //                 ),
-    //               ),
-    //             ),
-    //             Expanded(
-    //               child: Tab(
-    //                 icon: IconButton(
-    //                   icon: Icon(
-    //                     Icons.store,
-    //                     color: index == 1
-    //                         ? DeliveryColors.green
-    //                         : DeliveryColors.lightGrey,
-    //                   ),
-    //                   onPressed: () => bloc.updateIndexSelected(1),
-    //                 ),
-    //               ),
-    //             ),
-    //             Expanded(
-    //               child: Tab(
-    //                 icon: Center(
-    //                   child: Stack(
-    //                     children: [
-    //                       CircleAvatar(
-    //                         backgroundColor: DeliveryColors.blackBlue,
-    //                         radius: 23,
-    //                         child: IconButton(
-    //                           icon: Icon(
-    //                             Icons.shopping_basket,
-    //                             color: index == 2
-    //                                 ? DeliveryColors.green
-    //                                 : DeliveryColors.white,
-    //                           ),
-    //                           onPressed: () => bloc.updateIndexSelected(2),
-    //                         ),
-    //                       ),
-    //                       Positioned(
-    //                         right: 0,
-    //                         child: cartBloc.totalItems == 0
-    //                             ? const SizedBox.shrink()
-    //                             : CircleAvatar(
-    //                                 radius: 10,
-    //                                 backgroundColor: Colors.pinkAccent,
-    //                                 child: Text(
-    //                                   cartBloc.totalItems.toString(),
-    //                                 ),
-    //                               ),
-    //                       ),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //             Expanded(
-    //               child: Tab(
-    //                 icon: IconButton(
-    //                   icon: Icon(
-    //                     Icons.favorite_border,
-    //                     color: index == 3
-    //                         ? DeliveryColors.green
-    //                         : DeliveryColors.lightGrey,
-    //                   ),
-    //                   onPressed: () => bloc.updateIndexSelected(3),
-    //                 ),
-    //               ),
-    //             ),
-    //             Expanded(
-    //               child: Tab(
-    //                 icon: InkWell(
-    //                   onTap: () => bloc.updateIndexSelected(4),
-    //                   child: user?.image == null
-    //                       ? const SizedBox.shrink()
-    //                       : Center(
-    //                           child: CircleAvatar(
-    //                             radius: 15,
-    //                             backgroundImage: AssetImage(
-    //                               user.image,
-    //                             ),
-    //                           ),
-    //                         ),
-    //                 ),
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }
 
